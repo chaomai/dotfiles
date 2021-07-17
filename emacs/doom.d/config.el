@@ -160,7 +160,7 @@
       (progn
         ;; english font
         ;; (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Victor Mono" size) :weight 'Regular)
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Sarasa Mono SC" size) :weight 'Regular)
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Sarasa Mono Slab SC" size) :weight 'Regular)
         ;; chinese font
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font) charset

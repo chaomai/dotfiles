@@ -1,3 +1,0 @@
-let g:is_on_server = 1
-source ~/Documents/workspace/dotfiles/vim/vim-init/init.vim
-

@@ -15,7 +15,7 @@
 if !exists("g:bundle_group")
     let g:bundle_group = ["basic", "enhanced"]
     let g:bundle_group += ["lightline", "vimautoformat"]
-    let g:bundle_group += ["fzf", "nvim_diffview", "nvim_treesitter", "nvim_lsp", "nvim_compe", "nvim_autopairs"]
+    let g:bundle_group += ["nvim_telescope", "nvim_diffview", "nvim_treesitter", "nvim_lsp", "nvim_compe", "nvim_autopairs"]
 endif
 
 
@@ -240,60 +240,6 @@ endif
 
 
 "----------------------------------------------------------------------
-" FZF 文件模糊匹配
-"----------------------------------------------------------------------
-if index(g:bundle_group, "fzf") >= 0
-    Plug 'junegunn/fzf', { 'do': './install --bin' }
-    Plug 'junegunn/fzf.vim'
-
-    let g:fzf_preview_window = "right:70%"
-    let g:fzf_layout = { "window": { "width": 0.9, "height": 0.8 } }
-    let g:fzf_command_prefix = "FZF"
-
-    " ALT+p 打开文件模糊匹配
-    nnoremap <m-p> :FZFFiles<cr>
-
-    " ALT+p 打开 buffer 模糊匹配
-    nnoremap <m-b> :FZFBuffers<cr>
-
-    " ALT+n rg 搜索
-    function! FZFRipgrep(query, fullscreen)
-        let command_fmt = "rg --column --line-number --no-heading --color=always --smart-case %s || true"
-        let initial_command = printf(command_fmt, shellescape(a:query))
-        let reload_command = printf(command_fmt, "{q}")
-        let spec = {"options": ["--phony", "--query", a:query, "--bind", "change:reload:".reload_command]}
-        call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-    endfunction
-
-    command! -nargs=* -bang FZFRG call FZFRipgrep(<q-args>, <bang>0)
-    nnoremap <m-n> :FZFRG<cr>
-
-    " ALT+w window 搜索
-    nnoremap <m-w> :FZFWindows<cr>
-
-    " ALT+m marks 搜索
-    nnoremap <m-m> :FZFMarks<cr>
-
-    " ALT+t task 搜索
-    " nnoremap <m-t> :FZFAsyncTask<cr>
-    
-    " fzf preview highlight
-    augroup update_bat_theme
-        autocmd!
-        autocmd colorscheme * call ToggleBatEnvVar()
-    augroup end
-
-    function ToggleBatEnvVar()
-        if (&background == "light")
-            let $BAT_THEME='OneHalfLight'
-        else
-            let $BAT_THEME='OneHalfDark'
-        endif
-    endfunction
-endif
-
-
-"----------------------------------------------------------------------
 " vim-autoformat
 "----------------------------------------------------------------------
 if index(g:bundle_group, "vimautoformat") >= 0
@@ -349,6 +295,15 @@ endif
 
 
 "----------------------------------------------------------------------
+" nvim_telescope
+"----------------------------------------------------------------------
+if index(g:bundle_group, "nvim_telescope") >= 0
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+endif
+
+"----------------------------------------------------------------------
 " nvim_diffview
 "----------------------------------------------------------------------
 if index(g:bundle_group, "nvim_diffview") >= 0
@@ -398,6 +353,18 @@ call plug#end()
 "----------------------------------------------------------------------
 " after plug
 "----------------------------------------------------------------------
+
+
+"----------------------------------------------------------------------
+" nvim_telescope
+"----------------------------------------------------------------------
+if index(g:bundle_group, "nvim_telescope") >= 0
+    " Using Lua functions
+    nnoremap <m-p> <cmd>lua require('telescope.builtin').find_files()<cr>
+    nnoremap <m-n> <cmd>lua require('telescope.builtin').live_grep()<cr>
+    nnoremap <m-s> <cmd>lua require('telescope.builtin').grep_string()<cr>
+    nnoremap <m-b> <cmd>lua require('telescope.builtin').buffers()<cr>
+endif
 
 
 "----------------------------------------------------------------------

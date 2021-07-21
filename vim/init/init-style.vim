@@ -57,20 +57,19 @@ set t_Co=256
 "----------------------------------------------------------------------
 " 状态栏设置
 "----------------------------------------------------------------------
-set statusline=                                 " 清空状态了
-set statusline+=\ %F                            " 文件名
-set statusline+=\ [%1*%M%*%n%R%H]               " buffer 编号和状态
-set statusline+=%=                              " 向右对齐
-set statusline+=\ %y                            " 文件类型
+" set statusline=                                 " 清空状态栏
+" set statusline+=\ %F                            " 文件名
+" set statusline+=\ [%1*%M%*%n%R%H]               " buffer 编号和状态
+" set statusline+=%=                              " 向右对齐
+" set statusline+=\ %y                            " 文件类型
 
 " 最右边显示文件编码和行号等信息，并且固定在一个 group 中，优先占位
-set statusline+=\ %0(%{&fileformat}\ [%{(&fenc==\"\"?&enc:&fenc).(&bomb?\",BOM\":\"\")}]\ %v:%l/%L%)
+" set statusline+=\ %0(%{&fileformat}\ [%{(&fenc==\"\"?&enc:&fenc).(&bomb?\",BOM\":\"\")}]\ %v:%l/%L%)
 
 
 "----------------------------------------------------------------------
 " 更改样式
 "----------------------------------------------------------------------
-
 " 更清晰的错误标注：默认一片红色背景，语法高亮都被搞没了
 " 只显示红色或者蓝色下划线或者波浪线
 hi! clear SpellBad

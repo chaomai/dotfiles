@@ -43,9 +43,6 @@ nnoremap <silent>gg :call ToggleMovement("gg", "G")<cr>
 " wrap to next position when reaching begining or end of line
 set whichwrap=<,>,h,l
 
-" TODO: set up location list toggle
-" https://github.com/Valloric/ListToggle/blob/master/plugin/listtoggle.vim
-
 nnoremap <leader>hl :nohlsearch<cr>
 
 nnoremap <leader>pp :setlocal paste!<cr>
@@ -66,6 +63,8 @@ nnoremap <leader>tw :call TrimWhitespace()<cr>
 "----------------------------------------------------------------------
 inoremap <c-a> <home>
 inoremap <c-e> <end>
+inoremap <c-p> <up>
+inoremap <c-n> <down>
 inoremap <c-d> <del>
 inoremap <c-_> <c-k>
 

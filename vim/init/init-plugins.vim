@@ -334,6 +334,7 @@ endif
 if index(g:bundle_group, "nvim_compe") >= 0
     Plug 'hrsh7th/nvim-compe'
     Plug 'L3MON4D3/LuaSnip'
+    Plug 'rafamadriz/friendly-snippets'
 endif
 
 
@@ -364,6 +365,20 @@ if index(g:bundle_group, "nvim_telescope") >= 0
     nnoremap <m-n> <cmd>lua require('telescope.builtin').live_grep()<cr>
     nnoremap <m-s> <cmd>lua require('telescope.builtin').grep_string()<cr>
     nnoremap <m-b> <cmd>lua require('telescope.builtin').buffers()<cr>
+
+lua <<EOF
+local actions = require("telescope.actions")
+
+require("telescope").setup {
+    defaults = {
+        mappings = {
+            i = {
+                ["<esc>"] = actions.close
+            }
+        }
+    }
+}
+EOF
 endif
 
 
@@ -562,6 +577,8 @@ end
 --- move to prev/next item in completion menu
 --- jump to prev/next snippet's placeholder
 local luasnip = require "luasnip"
+
+require("luasnip/loaders/from_vscode").lazy_load()
 
 _G.tab_complete = function()
     if vim.fn.pumvisible() == 1 then

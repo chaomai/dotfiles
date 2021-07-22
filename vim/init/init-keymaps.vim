@@ -17,9 +17,6 @@
 
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
-nnoremap <leader>ll :set list!<cr>
-noremap <c-k><c-k> zt
-noremap <c-j><c-j> z-
 
 function! ToggleMovement(firstOp, thenOp)
     let pos = getpos(".")
@@ -47,6 +44,8 @@ nnoremap <leader>hl :nohlsearch<cr>
 
 nnoremap <leader>pp :setlocal paste!<cr>
 nnoremap <leader>wp :setlocal wrap!<cr>
+
+nnoremap <leader>ll :set list!<cr>
 
 func! TrimWhitespace()
   let l:winview=winsaveview()
@@ -194,68 +193,3 @@ endfunc
 
 noremap <silent><leader>tl :call Tab_MoveLeft()<cr>
 noremap <silent><leader>tr :call Tab_MoveRight()<cr>
-noremap <silent><m-left> :call Tab_MoveLeft()<cr>
-noremap <silent><m-right> :call Tab_MoveRight()<cr>
-
-
-"----------------------------------------------------------------------
-" ALT 键移动增强
-"----------------------------------------------------------------------
-
-" ALT+h/l 快速左右按单词移动（正常模式+插入模式）
-noremap <m-h> b
-noremap <m-l> w
-inoremap <m-h> <c-left>
-inoremap <m-l> <c-right>
-
-" ALT+j/k 逻辑跳转下一行/上一行（按 wrap 逻辑换行进行跳转）
-noremap <m-j> gj
-noremap <m-k> gk
-inoremap <m-j> <c-\><c-o>gj
-inoremap <m-k> <c-\><c-o>gk
-
-" 命令模式下的相同快捷
-cnoremap <m-h> <c-left>
-cnoremap <m-l> <c-right>
-
-" ALT+y 删除到行末
-noremap <m-y> d$
-inoremap <m-y> <c-\><c-o>d$
-
-
-"----------------------------------------------------------------------
-" 窗口切换：ALT+SHIFT+hjkl
-" 传统的 CTRL+hjkl 移动窗口不适用于 vim 8.1 的终端模式，CTRL+hjkl 在
-" bash/zsh 及带文本界面的程序中都是重要键位需要保留，不能 tnoremap 的
-"----------------------------------------------------------------------
-
-" 使用vim-tmux-navigator
-
-" noremap <m-H> <c-w>h
-" noremap <m-L> <c-w>l
-" noremap <m-J> <c-w>j
-" noremap <m-K> <c-w>k
-" inoremap <m-H> <esc><c-w>h
-" inoremap <m-L> <esc><c-w>l
-" inoremap <m-J> <esc><c-w>j
-" inoremap <m-K> <esc><c-w>k
-
-" if has("terminal") && exists(":terminal") == 2 && has("patch-8.1.1")
-"   " vim 8.1 支持 termwinkey ，不需要把 terminal 切换成 normal 模式
-"   " 设置 termwinkey 为 CTRL 加减号（GVIM），有些终端下是 CTRL+?
-"   " 后面四个键位是搭配 termwinkey 的，如果 termwinkey 更改，也要改
-"   set termwinkey=<c-_>
-"   tnoremap <m-H> <c-_>h
-"   tnoremap <m-L> <c-_>l
-"   tnoremap <m-J> <c-_>j
-"   tnoremap <m-K> <c-_>k
-"   tnoremap <m-q> <c-\><c-n>
-" elseif has("nvim")
-"   " neovim 没有 termwinkey 支持，必须把 terminal 切换回 normal 模式
-"   tnoremap <m-H> <c-\><c-n><c-w>h
-"   tnoremap <m-L> <c-\><c-n><c-w>l
-"   tnoremap <m-J> <c-\><c-n><c-w>j
-"   tnoremap <m-K> <c-\><c-n><c-w>k
-"   tnoremap <m-q> <c-\><c-n>
-" endif
-

@@ -305,6 +305,17 @@ if index(g:bundle_group, "ayu") >= 0
 endif
 
 
+if index(g:bundle_group, "devicons") >= 0
+lua <<EOF
+require "nvim-web-devicons".setup {
+    -- globally enable default icons (default to false)
+    -- will get overriden by `get_icons` option
+    default = true
+}
+EOF
+endif
+
+
 if index(g:bundle_group, "treesitter_nvim") >= 0
 lua <<EOF
 require'nvim-treesitter.configs'.setup {

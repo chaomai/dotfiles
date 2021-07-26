@@ -357,6 +357,25 @@ lua <<EOF
 local lspconfig = require'lspconfig'
 local util = require'lspconfig/util'
 
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    --Enable completion triggered by <c-x><c-o>
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+end
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
@@ -371,6 +390,11 @@ local ccls_path = vim.fn.expand("~/Documents/workspace/github/ccls/Release/ccls"
 
 lspconfig.ccls.setup {
     capabilities = capabilities,
+    on_attach = on_attach,
+
+    flags = {
+        debounce_text_changes = 500,
+    };
 
     cmd = { ccls_path };
     filetypes = { "c", "cpp", "cuda", "objc", "objcpp" };
@@ -403,7 +427,7 @@ lspconfig.ccls.setup {
         index = {
             threads = 5;
         };
-    }
+    };
 }
 EOF
 endif

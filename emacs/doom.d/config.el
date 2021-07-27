@@ -151,7 +151,7 @@
   (message "no implemented"))
 
  ((string-equal platform WSL)
-  (defvar font_size 18)))
+  (defvar font_size 19)))
 
 ;; https://emacs-china.org/t/doom-emacs/9628/8?u=chaomai
 (defun +my/better-font(size)

@@ -14,7 +14,7 @@
 "----------------------------------------------------------------------
 if !exists("g:bundle_group")
     let g:bundle_group = ["hop_nvim", "tabularize", "diffview_nvim", "vim_startify", "vim_choosewin", "indent-blankline_nvim", "vim_expand_region", "nerdcommenter", "pangu", "telescope_nvim", "git"]
-    let g:bundle_group += ["ayu", "devicons"]
+    let g:bundle_group += ["colorscheme", "devicons"]
     let g:bundle_group += ["vimautoformat", "treesitter_nvim", "lsp_nvim", "compe_nvim", "autopairs_nvim"]
 endif
 
@@ -69,7 +69,7 @@ endif
 
 if index(g:bundle_group, "vim_choosewin") >= 0
     Plug 't9md/vim-choosewin'
-    nmap <space>cw <Plug>(choosewin)
+    nmap <m-e> <Plug>(choosewin)
 endif
 
 
@@ -93,9 +93,7 @@ if index(g:bundle_group, "nerdcommenter") >= 0
     Plug 'scrooloose/nerdcommenter'
     let g:NERDSpaceDelims = 1
     let g:NERDCreateDefaultMappings = 0
-    nmap <space>cl <Plug>NERDCommenterInvert
-    nmap <space>cs <Plug>NERDCommenterSexy
-    nmap <space>ct <Plug>NERDCommenterToggle
+    nmap <m-;> <Plug>NERDCommenterInvert
 endif
 
 
@@ -117,8 +115,10 @@ if index(g:bundle_group, "git") >= 0
 endif
 
 
-if index(g:bundle_group, "ayu") >= 0
+if index(g:bundle_group, "colorscheme") >= 0
     Plug 'ayu-theme/ayu-vim'
+    Plug 'sonph/onehalf', { 'rtp': 'vim' }
+    Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 endif
 
 
@@ -299,9 +299,14 @@ EOF
 endif
 
 
-if index(g:bundle_group, "ayu") >= 0
-    let ayucolor="light"
-    colorscheme ayu
+if index(g:bundle_group, "colorscheme") >= 0
+    " let ayucolor="light"
+    " colorscheme ayu
+
+    colorscheme onehalflight
+
+    " let g:material_theme_style = 'lighter'
+    " colorscheme material
 endif
 
 

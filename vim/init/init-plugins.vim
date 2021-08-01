@@ -13,7 +13,9 @@
 " 默认情况下的分组
 "----------------------------------------------------------------------
 if !exists("g:bundle_group")
-    let g:bundle_group = ["hop_nvim", "tabularize", "diffview_nvim", "vim_startify", "vim_choosewin", "indent-blankline_nvim", "vim_expand_region", "nerdcommenter", "pangu", "telescope_nvim", "git"]
+    let g:bundle_group = ["hop_nvim", "tabularize", "diffview_nvim", "vim_startify"]
+    let g:bundle_group += ["vim_choosewin", "vim_expand_region", "nerdcommenter", "pangu"]
+    let g:bundle_group += ["indent-blankline_nvim", "telescope_nvim", "git"]
     let g:bundle_group += ["colorscheme", "devicons"]
     let g:bundle_group += ["vimautoformat", "treesitter_nvim", "lsp_nvim", "compe_nvim", "autopairs_nvim"]
 endif

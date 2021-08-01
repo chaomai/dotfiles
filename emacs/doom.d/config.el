@@ -145,7 +145,7 @@
 
 (cond
  ((string-equal platform MACOS)
-  (defvar font_size 15))
+  (defvar font_size 14))
 
  ((string-equal platform LINUX)
   (message "no implemented"))
@@ -159,8 +159,8 @@
   (if (display-graphic-p)
       (progn
         ;; english font
-        ;; (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Victor Mono" size) :weight 'Regular)
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Sarasa Mono SC" size) :weight 'Regular)
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Victor Mono" size) :weight 'Regular)
+        ;; (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Sarasa Mono SC" size) :weight 'Medium)
         ;; chinese font
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font) charset

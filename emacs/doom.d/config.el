@@ -151,7 +151,7 @@
   (message "no implemented"))
 
  ((string-equal platform WSL)
-  (defvar font_size 19)))
+  (defvar font_size 18)))
 
 ;; https://emacs-china.org/t/doom-emacs/9628/8?u=chaomai
 (defun +my/better-font(size)
@@ -159,7 +159,7 @@
   (if (display-graphic-p)
       (progn
         ;; english font
-        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Victor Mono" size) :weight 'Regular)
+        (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Victor Mono" size) :weight 'Medium)
         ;; (set-face-attribute 'default nil :font (format "%s:pixelsize=%d" "Sarasa Mono SC" size) :weight 'Medium)
         ;; chinese font
         (dolist (charset '(kana han symbol cjk-misc bopomofo))

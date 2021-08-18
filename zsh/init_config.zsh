@@ -187,8 +187,8 @@ elif [[ $OSTYPE == "Linux" ]] || [[ $OSTYPE == "WSL" ]]; then
     #################### wsl2
     if [[ $OSTYPE == "WSL" ]]; then
         #################### environment variables
-        export CC=/usr/bin/clang-10
-        export CXX=/usr/bin/clang++-10
+        # export CC=/usr/bin/clang-10
+        # export CXX=/usr/bin/clang++-10
 
         #################### other
         for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do

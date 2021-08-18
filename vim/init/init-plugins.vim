@@ -78,8 +78,8 @@ endif
 if index(g:bundle_group, "indent-blankline_nvim") >= 0
     Plug 'lukas-reineke/indent-blankline.nvim'
     let g:indentLine_char_list = ["¦", "┆", "┊", "│"]
-    let g:indent_blankline_use_treesitter = v:true
-    let g:indent_blankline_show_current_context = v:true
+    let g:indent_blankline_use_treesitter = v:false
+    let g:indent_blankline_show_current_context = v:false
 endif
 
 

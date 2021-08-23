@@ -14,7 +14,7 @@
 "----------------------------------------------------------------------
 if !exists("g:bundle_group")
     let g:bundle_group = ["hop_nvim", "tabularize", "diffview_nvim", "vim_startify"]
-    let g:bundle_group += ["vim_choosewin", "vim_expand_region", "nerdcommenter", "pangu"]
+    let g:bundle_group += ["vim_choosewin", "vim_expand_region", "nerdcommenter", "pangu", "tree_nvim"]
     let g:bundle_group += ["indent-blankline_nvim", "telescope_nvim", "git"]
     let g:bundle_group += ["colorscheme", "devicons"]
     let g:bundle_group += ["vimautoformat", "treesitter_nvim", "lsp_nvim", "compe_nvim", "autopairs_nvim"]
@@ -101,6 +101,11 @@ endif
 
 if index(g:bundle_group, "pangu") >= 0
     Plug 'hotoo/pangu.vim'
+endif
+
+
+if index(g:bundle_group, "tree_nvim") >= 0
+    Plug 'kyazdani42/nvim-tree.lua'
 endif
 
 
@@ -268,6 +273,11 @@ if index(g:bundle_group, "vim_startify") >= 0
                 \ ]
 
     let g:startify_custom_header = startify#center(g:ascii + startify#fortune#boxed())
+endif
+
+
+if index(g:bundle_group, "tree_nvim") >= 0
+    nnoremap <space>op :NvimTreeToggle<cr>
 endif
 
 
